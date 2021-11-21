@@ -17,7 +17,7 @@ except:
     from tkinter import messagebox
     import os
 
-screen = pygame.display.set_mode((800, 800))
+screen = pygame.display.set_mode((600, 600))
 
 class spot:
     def __init__(self, x, y):
@@ -63,8 +63,8 @@ red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
 grey = (220, 220, 220)
-w = 800 / cols
-h = 800 / row
+w = 600 / cols
+h = 600 / row
 cameFrom = []
 
 # create 2d array
@@ -131,8 +131,8 @@ openSet.append(start)
 def mousePress(x):
     t = x[0]
     w = x[1]
-    g1 = t // (800 // cols)
-    g2 = w // (800 // row)
+    g1 = t // (600 // cols)
+    g2 = w // (600 // row)
     acess = grid[g1][g2]
     if acess != start and acess != end:
         if acess.obs == False:
@@ -164,7 +164,7 @@ for i in range(cols):
     for j in range(row):
         grid[i][j].addNeighbors(grid)
 
-def heurisitic(n, e):
+def diagonaldist(n, e):
     d = math.sqrt((n.i - e.i)**2 + (n.j - e.j)**2)
     #d = abs(n.i - e.i) + abs(n.j - e.j)
     return d
@@ -219,7 +219,7 @@ def main():
                     neighbor.g = tempG
                     openSet.append(neighbor)
 
-            neighbor.h = heurisitic(neighbor, end)
+            neighbor.h = diagonaldist(neighbor, end)
             neighbor.f = neighbor.g + neighbor.h
 
             if neighbor.previous == None:
