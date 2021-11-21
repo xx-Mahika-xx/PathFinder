@@ -19,7 +19,7 @@ failed = []
 # Try to open reqirements.txt file and read all required packages
 try:
     file = open("requirements.txt", "r")
-    file_lines = file.readlines()
+    file_lines = file.readlines()    
     required = [line.strip().lower() for line in file_lines]
     file.close()
 except FileNotFoundError:
